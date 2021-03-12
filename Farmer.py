@@ -117,11 +117,13 @@ class Farmer(object):
 
     # вспомогательный метод для выборки яблока под определённую задачу ( параметр task )
     def choice(self, task) -> None or int:
-        self.show_apples()
-        apple_index = int(input(f"Введите номер яблока, чтобы {task}:"))
-        if apple_index - 1 <= len(self.apples):
-            return apple_index - 1
-        return None
+        try:
+            self.show_apples()
+            apple_index = int(input(f"Введите номер яблока, чтобы {task}:"))
+            if apple_index - 1 <= len(self.apples):
+                return apple_index - 1
+        except:
+            return None
 
     def sell_apple(self) -> None:
         number_of_apple_to_sell = self.choice(task="продать")

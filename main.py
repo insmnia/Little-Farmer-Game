@@ -34,36 +34,36 @@ def game(save=None):
               "13)Сохранить прогресс\n"
               "0)Выйти в главное меню\n"
               )
-        menu = int(input(":"))
-        if menu == 1:
+        menu = input(":")
+        if menu == "1":
             farmer.grow_apple_with_water_and_plants()
-        elif menu == 2:
+        elif menu == "2":
             farmer.grow_apple_with_water()
-        elif menu == 3:
+        elif menu == "3":
             farmer.grow_apple_with_plants()
-        elif menu == 4:
+        elif menu == "4":
             farmer.grow_apple()
-        elif menu == 5:
+        elif menu == "5":
             farmer.look_for_water()
-        elif menu == 6:
+        elif menu == "6":
             farmer.buy_plants()
-        elif menu == 7:
+        elif menu == "7":
             farmer.buy_water()
-        elif menu == 8:
+        elif menu == "8":
             farmer.eat_apple()
-        elif menu == 9:
+        elif menu == "9":
             farmer.bite_apple()
-        elif menu == 10:
+        elif menu == "10":
             farmer.sell_apple()
-        elif menu == 11:
+        elif menu == "11":
             farmer.play_coinflip()
-        elif menu == 12:
+        elif menu == "12":
             farmer.show_stats()
             continue
-        elif menu == 13:
+        elif menu == "13":
             manager.save(farmer.to_dict())
             continue
-        elif menu == 0:
+        elif menu == "0":
             print("Игра окончена!")
             farmer.show_stats()
             farmer.show_apples()
@@ -83,14 +83,14 @@ if __name__ == "__main__":
             "3. Посмотреть информацию о последней игре\n"
             "0. Выйти из игры\n"
         )
-        menu = int(input(":"))
-        if menu == 1:
+        menu = input(":")
+        if menu == "1":
             game()
-        elif menu == 2:
+        elif menu == "2":
             game(save=True)
-        elif menu == 3:
+        elif menu == "3":
             manager.show_save()
-        elif menu == 0:
+        elif menu == "0":
             break
         else:
             print("Выберите существующий пункт меню!")
