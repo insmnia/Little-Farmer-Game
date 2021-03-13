@@ -77,10 +77,10 @@ class Apple(object):
                 hunger -= size[2]
 
         apple_state_and_health = (
-            ("коричневое", 5), ("черное", 2)
+            ("коричневое", .5), ("чёрное", 2)
         )
         for state in apple_state_and_health:
-            if self.state == state[0]:
+            if self.color == state[0]:
                 health -= state[1]
 
         apple_taste_and_health = (
@@ -90,7 +90,7 @@ class Apple(object):
         for taste in apple_taste_and_health:
             if self.taste == taste[0]:
                 health -= taste[1]
-        return (hunger if self.state != "покусанное" else int(hunger*.6), health)
+        return (health, hunger)
 
     # оценка качества яблока. Подсчет кол-ва утоляемого голода при укусе яблока
     def bite(self) -> int:

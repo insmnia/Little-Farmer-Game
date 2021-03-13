@@ -213,8 +213,8 @@ class Farmer(object):
         if number_of_apple_to_eat is not None:
             apple = self.apples[number_of_apple_to_eat]
             health, hunger = apple.value()
-            self.hunger -= hunger
-            self.health -= health
+            self.hunger += hunger
+            self.health += health
             self.normalize()
             self.apple_count -= 1
             self.apples.pop(number_of_apple_to_eat)
