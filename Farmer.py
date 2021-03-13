@@ -1,7 +1,5 @@
 from Apple import Apple
 from random import randint
-# TODO сохранение прогресса ( узнать, оцениться ли это )
-# TODO регулирование неудач
 
 
 class Farmer(object):

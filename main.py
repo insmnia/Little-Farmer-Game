@@ -1,6 +1,5 @@
 from Farmer import Farmer
 from Manager import SaveManager
-# TODO сохранение прогресса
 
 manager = SaveManager()
 
