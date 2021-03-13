@@ -118,7 +118,7 @@ class Farmer(object):
         try:
             self.show_apples()
             apple_index = int(input(f"Введите номер яблока, чтобы {task}:"))
-            if apple_index - 1 <= len(self.apples):
+            if apple_index - 1 <= len(self.apples) and self.apples:
                 return apple_index - 1
         except:
             return None
