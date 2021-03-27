@@ -66,6 +66,6 @@ class SaveManager(object):
     def update_exit(exit: bool = None) -> None:
         with open("check.txt", "w") as exit_check_file:
             if exit is not None:
-                exit_check_file.write("0")
-            else:
                 exit_check_file.write("1")
+            else:
+                exit_check_file.write("0")

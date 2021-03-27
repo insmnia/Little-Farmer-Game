@@ -17,6 +17,7 @@ def start(save=None):
 
 def game(save=None):
     farmer = start(save)
+    manager.update_exit()
     while True:
         # использование лога
         with open("log.txt", "a") as log_file:
@@ -90,7 +91,6 @@ if __name__ == "__main__":
     while True:
         if not manager.check_exit():
             print("Прошлая сессия была завершена некорректно. Данные были сохранены не полностью!")
-        manager.update_exit()
         print(
             "Добро пожаловать в игру Маленький фермер!\n"
             "1. Начать новую игру\n"
