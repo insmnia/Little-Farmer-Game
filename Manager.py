@@ -2,11 +2,7 @@ import os
 import json
 
 
-
-
-
 class SaveManager(object):
-
     def __init__(self):
         self.path = os.path.abspath(__file__)[:-9]
 
@@ -23,16 +19,16 @@ class SaveManager(object):
             except json.decoder.JSONDecodeError:
                 print("Нет информации о прошлой игре!")
                 return
-        print(
-            ("Уровень здоровья :: {health}\n"
-             "Уровень голода :: {hunger}\n"
-             "Запас воды :: {water}\n"
-             "Запас удобрений :: {plants}\n"
-             "Количество денег :: {money}\n").format(
-                health=save["data"]["health"], hunger=save["data"]["hunger"],
-                water=save["data"]["water"], plants=save["data"]["plants"], money=save["data"]["money"]
-            )
-        )
+        print(("Уровень здоровья :: {health}\n"
+               "Уровень голода :: {hunger}\n"
+               "Запас воды :: {water}\n"
+               "Запас удобрений :: {plants}\n"
+               "Количество денег :: {money}\n").format(
+                   health=save["data"]["health"],
+                   hunger=save["data"]["hunger"],
+                   water=save["data"]["water"],
+                   plants=save["data"]["plants"],
+                   money=save["data"]["money"]))
         for number, apple in enumerate(save["data"]["apples"]):
             print(("--------------------------\n"
                    "{number})Apple color : {color}\n"
@@ -40,10 +36,12 @@ class SaveManager(object):
                    "{number})Apple size : {size}\n"
                    "{number})Apple taste : {taste}\n"
                    "{number})Apple state : {state}\n"
-                   "--------------------------").format(
-                number=number + 1, color=apple["color"], smooth=apple["smooth"],
-                size=apple["size"], taste=apple["taste"], state=apple["state"])
-            )
+                   "--------------------------").format(number=number + 1,
+                                                        color=apple["color"],
+                                                        smooth=apple["smooth"],
+                                                        size=apple["size"],
+                                                        taste=apple["taste"],
+                                                        state=apple["state"]))
         return None
 
     def load_save(self) -> dict:
@@ -54,6 +52,7 @@ class SaveManager(object):
                 return None
         return save
 
+    # проверка на корректный выход из игры. Если в файле записан 0, то сессия была завершена неверно
     @staticmethod
     def check_exit() -> bool:
         with open("check.txt", "r") as exit_check_file:
@@ -61,7 +60,7 @@ class SaveManager(object):
             if str(state) == "0":
                 return False
         return True
-
+    # обновление записи выхода в файле
     @staticmethod
     def update_exit(exit: bool = None) -> None:
         with open("check.txt", "w") as exit_check_file:

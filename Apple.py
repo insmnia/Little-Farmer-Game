@@ -2,7 +2,6 @@ import random
 
 
 class Apple(object):
-
     def __init__(self, water=None, plants=None, start=False):
         COLOR = ("красное", "зеленое", "желтое", "коричневое", "черное")
         SIZE = ("огромное", "большое", "среднее", "маленькое")
@@ -15,9 +14,9 @@ class Apple(object):
         else:
             # если используем воду для выращивания, то размер будет либо большим, либо огромным
             if water is not None:
-                self.size = SIZE[random.randint(0, 2-1)]
+                self.size = SIZE[random.randint(0, 2 - 1)]
             else:
-                self.size = SIZE[random.randint(2, 4-1)]
+                self.size = SIZE[random.randint(2, 4 - 1)]
             # если используем удобрения для выращивания, то яблоко обязательно будет сладким
             if plants is not None:
                 self.taste = "сладкое"
@@ -31,8 +30,11 @@ class Apple(object):
     # создание json объекта Яблока
     def to_dict(self) -> dict:
         apple = {
-            "size": self.size, "color": self.color, "state": self.state,
-            "smooth": self.smooth, "taste": self.taste
+            "size": self.size,
+            "color": self.color,
+            "state": self.state,
+            "smooth": self.smooth,
+            "taste": self.taste
         }
         return apple
 
@@ -48,10 +50,17 @@ class Apple(object):
     def price(self) -> int:
         price = 10
         pricing_info = (
-            ("красное", 2), ("зеленое", 1), ("коричневое", -1),
-            ("черное", -2), ("гладкое", 1), ("сморщенное", -1),
-            ("огромное", 2), ("большое", 1), ("маленькое", -1),
-            ("сладкое", 1), ("кислое", -1),
+            ("красное", 2),
+            ("зеленое", 1),
+            ("коричневое", -1),
+            ("черное", -2),
+            ("гладкое", 1),
+            ("сморщенное", -1),
+            ("огромное", 2),
+            ("большое", 1),
+            ("маленькое", -1),
+            ("сладкое", 1),
+            ("кислое", -1),
             ("покусанное", -3),
         )
         for stats in pricing_info:
@@ -60,32 +69,27 @@ class Apple(object):
                     self.state == stats[0]:
                 price += stats[1]
 
-        return int(price*0.4)
+        return int(price * 0.4)
+
     # оценка качества яблока. Подсчет кол-ва утоляемого голода и отнимаемого здоровья
 
     def value(self) -> tuple:
         hunger = 0
         health = 0
-        apple_size_and_hunger = (
-            ("огромное", 4, 2), ("большое", 3,
-                                 1.5), ("среднее", 2, 1), ("маленькое", 1, 0.5)
-        )
+        apple_size_and_hunger = (("огромное", 4, 2), ("большое", 3, 1.5),
+                                 ("среднее", 2, 1), ("маленькое", 1, 0.5))
         for size in apple_size_and_hunger:
             if self.state == "целое" and self.size == size[0]:
                 hunger -= size[1]
             elif self.state != "целое" and self.size == size[0]:
                 hunger -= size[2]
 
-        apple_state_and_health = (
-            ("коричневое", .5), ("чёрное", 2)
-        )
+        apple_state_and_health = (("коричневое", .5), ("чёрное", 2))
         for state in apple_state_and_health:
             if self.color == state[0]:
                 health -= state[1]
 
-        apple_taste_and_health = (
-            ("кислое", .5), ("горькое", 1)
-        )
+        apple_taste_and_health = (("кислое", .5), ("горькое", 1))
 
         for taste in apple_taste_and_health:
             if self.taste == taste[0]:
